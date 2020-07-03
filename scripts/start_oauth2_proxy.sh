@@ -34,5 +34,5 @@ if [ -n "${OAUTH2_GITHUB_ORG}" ]; then
     export OAUTH2_PROXY_GITHUB_ORG
 fi
 
-echo "starting oauth2_proxy..."
-exec ./oauth2_proxy
+echo "starting oauth2-proxy..."
+exec ./oauth2-proxy
