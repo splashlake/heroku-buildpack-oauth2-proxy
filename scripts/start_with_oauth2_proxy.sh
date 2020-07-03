@@ -45,7 +45,7 @@ else
     trap '' INT;
 fi
 
-# we are now launching a subshell for each of the tasks (oauth2_proxy, web server)
+# we are now launching a subshell for each of the tasks (oauth2-proxy, web server)
 # 1) each subshell has a trap on EXIT that echos the command name to FD 3 (see the FIFO set up above)
 # 1a) a 'read' at the end of the script will block on reading from that FD and then trigger the exit trap above, which does the cleanup
 # 2) each subshell also has a trap on TERM that
@@ -55,9 +55,9 @@ fi
 # 4) 'wait' on the command (wait is interrupted by an incoming TERM to the subshell, whereas running 3) in the foreground would wait for that 3) to finish before triggering the trap)
 # 5) add the PID of the subshell to the array that the EXIT trap further above uses to clean everything up
 
-echo "Starting oauth2_proxy..." >&2
+echo "Starting oauth2-proxy..." >&2
 (
-    trap 'echo "oauth2_proxy" >&3;' EXIT
+    trap 'echo "oauth2-proxy" >&3;' EXIT
     trap 'kill -TERM $! 2> /dev/null' TERM
     /app/bin/start_oauth2_proxy.sh &
     wait
